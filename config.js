@@ -9,4 +9,5 @@ SESSION_ID: process.env.SESSION_ID,
 ALIVE_IMG: process.env.AlIVE_IMG || "https://www.freepik.com/free-photos-vectors/joker-card",
 ALIVE_MSG: process.env.ALIVE_MSG || "Hello I am king joker bot I am alive now",
 AUTO_READ_STATUS: process.env.AUTO_READ_STATUS || "true",
+MODE: process.env.MODE || "public",
 };
