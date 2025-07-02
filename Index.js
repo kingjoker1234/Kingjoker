@@ -10,7 +10,7 @@ const config = await readEnv(); const prefix = config.PREFIX;
 
 console.log("Connecting wa bot 🤖..."); const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/auth_info_baileys/'); const { version } = await fetchLatestBaileysVersion();
 
-const conn = makeWASocket({ logger: P({ level: 'silent' }), printQRInTerminal: false, browser: Browsers.macOS("Firefox"), syncFullHistory: true, auth: state, version });
+const conn = makeWASocket({ logger: P({ level: 'silent' }), printQRInTerminal: true, browser: Browsers.macOS("Firefox"), syncFullHistory: true, auth: state, version });
 
 conn.ev.on('connection.update', async (update) => { const { connection, lastDisconnect } = update; if (connection === 'close') { if (lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut) { connectToWA(); } } else if (connection === 'open') { console.log('🐱 Installing...') fs.readdirSync("./plugins/").forEach((plugin) => { if (path.extname(plugin).toLowerCase() === ".js") { require("./plugins/" + plugin); } }); console.log('Plugins installed ✅'); console.log('Bot connected to WhatsApp ✅');
 
