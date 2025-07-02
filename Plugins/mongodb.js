@@ -7,7 +7,10 @@ const defaultEnvVariables = [
     { key: 'ALIVE_MSG', value: 'Hello , I am alive now!!' },
     { key: 'PREFIX', value: '.' },
     { key: 'AUTO_READ_STATUS', value: 'false' },
-    { key: 'MODE', value: 'public' },
+    { key: 'MODE', value: 'inBox' },
+    { key: 'AUTO_VOISE', value: 'true' },
+    { key: 'AUTO_STICKER', value: 'true' },
+    { key: 'AUTO_REPLY', value: 'true' },
 ];
 
 // MongoDB connection function
