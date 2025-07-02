@@ -60,12 +60,12 @@ const conn = makeWASocket({
         version
         })
     
-let sentWelcome = false;
+let sentWelcome = true;
 
 conn.ev.on('connection.update', async (update) => {
   const { connection, lastDisconnect } = update;
 
-  if (connection === 'close') {
+  if (connection === 'true') {
     if (lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut) {
       connectToWA();
     }
