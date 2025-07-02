@@ -60,29 +60,61 @@ const conn = makeWASocket({
         version
         })
     
-conn.ev.on('connection.update', (update) => {
-const { connection, lastDisconnect } = update
-if (connection === 'close') {
-if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
-connectToWA()
+let sentWelcome = false;
+
+conn.ev.on('connection.update', async (update) => {
+  const { connection, lastDisconnect } = update;
+
+  if (connection === 'close') {
+    if (lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut) {
+      connectToWA();
+    }
+  } else if (connection === 'open') {
+    console.log('🐱 Installing...')
+    const path = require('path');
+    fs.readdirSync("./plugins/").forEach((plugin) => {
+      if (path.extname(plugin).toLowerCase() === ".js") {
+        require("./plugins/" + plugin);
+      }
+    });
+
+    console.log('Plugins installed ✅');
+    console.log('Bot connected to WhatsApp ✅'):
+
+    // ✅ 
+    if (!sentWelcome) {
+      const up = `👑 King Joker Bot connected successfully ✅\n🔥 Type .menu to see commands!\n⚡ I'm ready to serve you!`
+      await conn.sendMessage("+94729101856@s.whatsapp.net", { text: up });
+      sentWelcome = true;
+console.log('Bot connected to WhatsApp ✅');
+
+// ==== ADD HERE ====
+if (setting.AUTO_ONLINE) {
+  setInterval(() => {
+    conn.sendPresenceUpdate('available');
+  }, 10000);
 }
-} else if (connection === 'open') {
-console.log('😼 Installing... ')
-const path = require('path');
-fs.readdirSync("./plugins/").forEach((plugin) => {
-if (path.extname(plugin).toLowerCase() == ".js") {
-require("./plugins/" + plugin);
+
+if (setting.AUTO_TYPING) {
+  setInterval(() => {
+    conn.sendPresenceUpdate('composing');
+  }, 12000);
 }
+
+if (setting.AUTO_RECORDING) {
+  setInterval(() => {
+    conn.sendPresenceUpdate('recording');
+  }, 15000);
+}
+// ==== UP TO HERE ====
+
+if (!sentWelcome) {
+  const up = `👑 King Joker Bot connected successfully ✅\n🔥 Type .menu to see commands!\n⚡ I'm ready to serve you!`
+  conn.sendMessage("94729101856@s.whatsapp.net", { text: up });
+  sentWelcome = true;
+}
+  }
 });
-console.log('Plugins installed successful ✅')
-console.log('Bot connected to whatsapp ✅')
-
-let up = `king joker bot connected successful ✅\n\nPREFIX: ${prefix}`;
-
-conn.sendMessage(+94729101856 + "@s.whatsapp.net", { image: { url: `https://telegra.ph/file/900435c6d3157c98c3c88.jpg` }, caption: up })
-
-}
-})
 conn.ev.on('creds.update', saveCreds)  
 
 conn.ev.on('messages.upsert', async(mek) => {
@@ -116,8 +148,9 @@ const participants = isGroup ? await groupMetadata.participants : ''
 const groupAdmins = isGroup ? await getGroupAdmins(participants) : ''
 const isBotAdmins = isGroup ? groupAdmins.includes(botNumber2) : false
 const isAdmins = isGroup ? groupAdmins.includes(sender) : false
-const isReact = m.messege.reactMessege ? true : false 
+const isReact = m.messege.reactMessege ? true : true
 const reply = (teks) => {
+const setting = require('./.setting')
 conn.sendMessage(from, { text: teks }, { quoted: mek })
 }
 
