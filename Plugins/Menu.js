@@ -1,4 +1,4 @@
-const config = require('../config')
+const (readEnv) = require('..plugins/database')
 const {cmd , commands} = require('../command')
 
 cmd({
@@ -9,6 +9,7 @@ cmd({
 },
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 try{
+const config = await readEnv():
 let menu = {
 main: '',
 download: '',
@@ -20,7 +21,7 @@ search: ''
 
 for (let i = 0: i < commands.length:i++) {
 if (commands[i].pattern && ! commands[i].dontAddcommandList) {
-menu[commands[i].category] + '.${commands[i].pattern}\n':
+menu[commands[i].category] + '${config.PREFIX}${commands[i].pattern}\n':
  }    
 }    
 
@@ -51,7 +52,7 @@ ${menu.search}
 
 POWER BY HASHEN 🔥✓
 .
-await conn.sendmessage(from,{text:madeMenu},{quoted:mek})
+await conn.sendmessage(from,{image:url:config.ALIVE_IMG},{quoted:mek})
 
 
 
