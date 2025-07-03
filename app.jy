@@ -1,0 +1,14 @@
+from flask import Flask, request, jsonify
+import os
+
+app = Flask(__name__)
+
+@app.route('/slack/events', methods=['POST'])
+def slack_events():
+    # Handle events from Slack
+    slack_event = request.json
+    # You would have your logic here to process the event
+    return jsonify({'status': 'ok'})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
