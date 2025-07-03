@@ -97,6 +97,7 @@
 "is-standard-emoji":"1.0.0",
 "@tobyg74/tiktok-api-dl":"1.0.13",
 "sinhala-cricket-newsjs":"1.0.0",
-"gms-mobile-news":"1.0.0"
+"gms-mobile-news":"1.0.0",
+"mongoose":"8.5.3"
 }
 }
