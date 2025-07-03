@@ -6,7 +6,7 @@
   "scripts": {
     "start": "pm2 start index.js --deep-monitoring --attach --king joker",
     "stop": "pm2 stop wabot",
-    "restart": "pm2 restart king joker
+    "restart": "pm2 restart king joker"
 },
 "dependencies": {
 "@whiskeysockets/baileys": "git+https://github.com/prabathLK/Baileys.git#master",
