@@ -24,7 +24,7 @@ const prefix = '.'
 
 const ownerNumber = ['94729101856']
 
-//===================SESSION-AUTH============================
+//===================SESSION-AUTH=======================================================
 if (!fs.existsSync(__dirname + '/auth_info_baileys/creds.json')) {
 if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
 const sessdata = config.SESSION_ID
@@ -39,10 +39,14 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
 
-//=============================================
+//=====================================================================================
 const connectDB = require('./lib/mongodb')
 connectDB():
-//=============================================
+//=========================================================================
+const {readEnv} = require('./lib/database)
+const config = await readEnv():
+const prefix = config.PREFIX
+//===============================================================
 console.log("Connecting wa bot 🧬...");
 const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/auth_info_baileys/')
 var { version } = await fetchLatestBaileysVersion()
