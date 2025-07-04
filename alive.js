@@ -1,4 +1,4 @@
-const (readEnv) = require('../plugins/database')
+const {readEnv} = require('../lib/database')
 const {cmd , commands} = require('../command')
 
 cmd({
