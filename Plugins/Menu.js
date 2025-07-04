@@ -1,4 +1,4 @@
-const (readEnv) = require('..plugins/database')
+const (readEnv) = require('..lib/database')
 const {cmd , commands} = require('../command')
 
 cmd({
@@ -30,22 +30,46 @@ let madeMenu = '*Hello ${pushname}*'
 
 ${menu.download}
 
+
+
+    
 > *MAIN COMMANDS*⚡
 
 ${menu.main}
 
+
+    
+    
+    
+    
 > *GROUP COMMANDS*⚡
 
 ${menu.group}
 
+
+    
+    
+    
+    
 > *OWNER COMMANDS*⚡
 
 ${menu.owner}
 
+
+    
+    
+    
+    
 > *CONVERT COMMANDS*⚡
 
 ${menu.convert}
 
+
+    
+    
+    
+    
+    
 > *SEARCH COMMANDS*⚡
 
 ${menu.search}
